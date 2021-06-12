@@ -1,2 +1,2 @@
 
-[blah](NotStockWatcher/Untitled Diagram.png)
+![blah](NotStockWatcher/Untitled Diagram.png)
