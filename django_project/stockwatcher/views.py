@@ -12,5 +12,5 @@ class StockListView(ListView):
   model = Stock
   template_name = 'stockwatcher/home.html' # <app>/<model>_<viewtype>.html
   context_object_name = 'stocks'
-  ordering = ['-date_posted']
-  paginate_by = 5
+  ordering = ['-transaction_date']
+#   paginate_by = 100
