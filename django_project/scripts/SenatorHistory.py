@@ -1,8 +1,8 @@
 import requests
 import os
 from datetime import date
- 
-from requests.exceptions import HTTPError 
+import ast
+#from requests.exceptions import HTTPError 
  
 def getDisclosures(endpoint="https://senate-stock-watcher-data.s3-us-west-2.amazonaws.com/aggregate/all_transactions.json"):
   """
@@ -20,6 +20,19 @@ def getDisclosures(endpoint="https://senate-stock-watcher-data.s3-us-west-2.amaz
  
   with open(f'{data_dir}/disclosure-{todays_date}', "w+") as fw:
     req = requests.get(endpoint, allow_redirects=True)
-    fw.write(req.text)
+    #fw.write(req.text) 
+    return req.text
  
-getDisclosures()
+
+ 
+ #####################
+ ### CLEAN UP DATA ###
+ #####################
+stock_history = ast.literal_eval(getDisclosures())
+stock_history_validated = []
+
+for n in range(len(stock_history)):
+  if stock_history[n]["ticker"] == "--" or stock_history[n]["ticker"] == "N/A" or stock_history[n]["amount"].upper() == "UNKNOWN":
+    pass
+  else:
+    stock_history_validated.append(stock_history[n])
