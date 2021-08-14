@@ -1,6 +1,6 @@
-
+{% extends "stockwatcher/base.html" %}
 {% block content %}
-<h1>Hello World</h1>
+<h1>Senator Stock Watcher</h1>
 {% for stock in stocks %}
     <p> {{stock.ticker}}, {{stock.transaction_date}}, {{stock.type}}, {{stock.amount}}, {{stock.senator}} </p>
 {% endfor %}
