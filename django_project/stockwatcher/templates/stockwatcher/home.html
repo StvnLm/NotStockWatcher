@@ -1,8 +1,9 @@
 
+
 {% block content %}
-<h1>Hello World</h1>
-{% for stock in stocks %}
-    <p> {{stock.ticker}}, {{stock.transaction_date}}, {{stock.type}}, {{stock.amount}}, {{stock.senator}} </p>
-{% endfor %}
+    <h1>Hello World</h1>
+    {% for stock in stocks %}
+        <p> {{stock.ticker}}, {{stock.transaction_date}}, {{stock.type}}, {{stock.amount}}, {{stock.senator}} </p>
+    {% endfor %}
 {% endblock content %}
 
