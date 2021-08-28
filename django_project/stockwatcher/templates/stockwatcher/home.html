@@ -1,8 +1,49 @@
-{% extends "stockwatcher/base.html" %}
+
 {% block content %}
-<h1>Senator Stock Watcher</h1>
-{% for stock in stocks %}
-    <p> {{stock.ticker}}, {{stock.transaction_date}}, {{stock.type}}, {{stock.amount}}, {{stock.senator}}, {{stock.transaction_date}} </p>
+<div class="container">
+{% for stock in stocks %} 
+  
+  {% if forloop.counter0|divisibleby:"3" or forloop.counter0 == "0" %}
+    <div class="row"> 
+  {% endif %}
+
+    {% if forloop.counter|divisibleby:"3" %}
+      <div class="col-sm">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+          <div class="card-header">{{stock.transaction_date}}</div>
+            <div class="card-body">
+            <h5 class="card-title">{{stock.ticker}} {{stock.amount}}</h5>
+            <p class="card-text">{{stock.senator}} - {{stock.type}}  </p>
+          </div>
+        </div>
+      </div>   
+    {% elif forloop.counter|divisibleby:"2" %}
+      <div class="col-sm">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{stock.transaction_date}}</div>
+              <div class="card-body">
+              <h5 class="card-title">{{stock.ticker}} {{stock.amount}}</h5>
+              <p class="card-text">{{stock.senator}} - {{stock.type}}  </p>
+            </div>
+          </div>
+      </div>
+    {% else %}
+      <div class="col-sm">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{stock.transaction_date}}</div>
+              <div class="card-body">
+              <h5 class="card-title">{{stock.ticker}} {{stock.amount}}</h5>
+              <p class="card-text">{{stock.senator}} - {{stock.type}}  </p>
+            </div>
+          </div>
+      </div>
+    {% endif %}
+
+  {% if forloop.counter0|divisibleby:"3" or forloop.counter0 == "0" %}
+    </div>
+  {% endif %}
+
 {% endfor %}
+</div>
 {% endblock content %}
 
