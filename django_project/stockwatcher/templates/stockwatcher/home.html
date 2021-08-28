@@ -1,8 +1,10 @@
-
+{% extends "stockwatcher/base.html" %}
 {% block content %}
+
 <div class="container">
+
 {% for stock in stocks %} 
-  
+
   {% if forloop.counter0|divisibleby:"3" or forloop.counter0 == "0" %}
     <div class="row"> 
   {% endif %}
@@ -16,7 +18,7 @@
             <p class="card-text">{{stock.senator}} - {{stock.type}}  </p>
           </div>
         </div>
-      </div>   
+      </div>
     {% elif forloop.counter|divisibleby:"2" %}
       <div class="col-sm">
         <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
@@ -45,5 +47,5 @@
 
 {% endfor %}
 </div>
-{% endblock content %}
 
+{% endblock content %}
