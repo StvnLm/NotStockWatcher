@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Senator Stock Watcher</h1>
 {% for stock in stocks %}
-    <p> {{stock.ticker}}, {{stock.transaction_date}}, {{stock.type}}, {{stock.amount}}, {{stock.senator}} </p>
+    <p> {{stock.ticker}}, {{stock.transaction_date}}, {{stock.type}}, {{stock.amount}}, {{stock.senator}}, {{stock.transaction_date}} </p>
 {% endfor %}
 {% endblock content %}
 
