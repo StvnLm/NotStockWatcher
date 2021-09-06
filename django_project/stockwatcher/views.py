@@ -4,14 +4,12 @@ from django.views.generic import ListView, DetailView
 from .models import Stock
 # Create your views here.
 
-
 def home(request):
-    context = {}
-    return render(request, 'stockwatcher/home.html', context)
+  return render(request, 'stockwatcher/base.html', {'title': 'Home'})
 
 class StockListView(ListView):
   model = Stock
-  template_name = 'stockwatcher/home.html' # <app>/<model>_<viewtype>.html
+  template_name = 'stockwatcher/stocks.html' # <app>/<model>_<viewtype>.html
   context_object_name = 'stocks'
   ordering = ['id']
   paginate_by = 500
