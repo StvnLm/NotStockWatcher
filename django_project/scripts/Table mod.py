@@ -9,7 +9,7 @@ try:
                                 asset_type TEXT,
                                 amount TEXT,
                                 type TEXT,
-                                transaction_date DATETIME,
+                                transaction_date TEXT,
                                 senator TEXT);'''
 
     cursor = sqliteConnection.cursor()
