@@ -1,4 +1,9 @@
+### KANBAN BOARD
+
+https://kanbanflow.com/board/yj8ydSr
+
 ### Wiki
+
 The wiki contains the project plan, wireframe, diagarms, tasks, etc.
 To download the wiki, run the following:
 ```
