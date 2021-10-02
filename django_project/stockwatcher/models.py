@@ -10,6 +10,3 @@ class Stock(models.Model):
     type = models.TextField(blank=True, null=True)
     transaction_date = models.DateField(blank=True, null=True)
     senator = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return self.name
