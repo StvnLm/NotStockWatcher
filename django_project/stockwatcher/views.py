@@ -5,14 +5,14 @@ from .models import Stock
 # Create your views here.
 
 def home(request):
-  return render(request, 'stockwatcher/base.html', {'title': 'Home'})
+  return render(request, 'stockwatcher/home.html', {'title': 'Home'})
 
 class StockListView(ListView):
   model = Stock
   template_name = 'stockwatcher/stocks.html' # <app>/<model>_<viewtype>.html
   context_object_name = 'stocks'
   ordering = ['id']
-  paginate_by = 500
+  paginate_by = 30
 
 class StockGraphView(ListView):
   model = Stock

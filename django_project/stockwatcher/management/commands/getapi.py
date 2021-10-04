@@ -41,26 +41,25 @@ def getDisclosures(endpoint="https://senate-stock-watcher-data.s3-us-west-2.amaz
     The REST endpoint of senate stock watcher used to grab the senator information.
   """
 
-  latest_db_record = Stock.objects.aggregate(Max('transaction_date'))
+  latest_db_record = Stock.objects.aggregate(Max('transaction_date'))["transaction_date__max"].strftime('%Y-%m-%d')
 
-  # Load the data into JSON format
   req_json = json.loads(requests.get(endpoint, allow_redirects=True).text)
-
+  print(len(req_json))
   # Clean up the data (e.g. remove NULL tickers)
   stock_history_validated = []
   for n in range(len(req_json)):
+
     req_json[n]["transaction_date"] = f'{req_json[n]["transaction_date"][6:10]}-{req_json[n]["transaction_date"][0:2]}-{req_json[n]["transaction_date"][3:5]}'
-    print(req_json[0]["transaction_date"])
-    if req_json[n]["ticker"] == "--" or req_json[n]["ticker"] == "N/A" or req_json[n]["amount"].upper() == "UNKNOWN" or req_json[n]:
+
+    if req_json[n]["ticker"] == "--" or req_json[n]["ticker"] == "N/A" or req_json[n]["amount"].upper() == "UNKNOWN" or req_json[n]["transaction_date"] > latest_db_record:
       pass
     else:
       min_amt, max_amt = req_json[n]["amount"].split('-')[0], req_json[n]["amount"].split('-')[1]
       min_amt, max_amt = int(min_amt.replace(",", "").replace("$", "")), int(max_amt.replace(",", "").replace("$", ""))
       req_json[n]["amount"] = round((min_amt + max_amt) / 2)
       stock_history_validated.append(req_json[n])
-    
+
+ 
   validated_json = json.loads(json.dumps(stock_history_validated))
-
-
-
+ 
   return validated_json
