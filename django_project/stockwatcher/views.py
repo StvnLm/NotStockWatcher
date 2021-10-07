@@ -21,6 +21,3 @@ class StockGraphView(ListView):
 
 def about(request):
   return render(request, 'stockwatcher/about.html', {'title': 'About'})
-
-def contact(request):
-  return render(request, 'stockwatcher/contact.html', {'title': 'Contact'})
