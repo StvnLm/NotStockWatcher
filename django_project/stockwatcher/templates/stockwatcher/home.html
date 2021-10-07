@@ -1,12 +1,11 @@
 {% extends "stockwatcher/base.html" %}
+{% load static %}
+<link rel="stylesheet" href={% static 'stockwatcher/custom_main.css' %}
 {% block content %}
 
-<div class="container">
-<div class="row" id="home-title">
-  <h1>Stock Watcher</h1>
-  <h4>a portal to catch trending stocks bought and sold by your senators</h4>
-</div>
-</div>
-</div>
+<!-- TODO: Fix the CSS... messes up when not fullscreen. -->
+<h1 id="home-title">StockWatcher</h1>
+<h2 id="home-subtext">track trending stocks bought and sold by your senators</h2>
+<img id="home-splash" src="{% static 'stockwatcher/investment.png' %}" >
 
 {% endblock content %}

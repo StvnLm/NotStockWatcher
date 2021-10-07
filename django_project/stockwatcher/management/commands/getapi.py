@@ -56,8 +56,6 @@ def getDisclosures(endpoint="https://senate-stock-watcher-data.s3-us-west-2.amaz
     if req_json[n]["ticker"] == "--" or req_json[n]["ticker"] == "N/A" or req_json[n]["amount"].upper() == "UNKNOWN" or latest_db_record >= req_json[n]["transaction_date"]:
       pass
     else:
-      print(latest_db_record, req_json[n]["transaction_date"])
-      print(latest_db_record > req_json[n]["transaction_date"])
       min_amt, max_amt = req_json[n]["amount"].split('-')[0], req_json[n]["amount"].split('-')[1]
       min_amt, max_amt = int(min_amt.replace(",", "").replace("$", "")), int(max_amt.replace(",", "").replace("$", ""))
       req_json[n]["amount"] = round((min_amt + max_amt) / 2)
