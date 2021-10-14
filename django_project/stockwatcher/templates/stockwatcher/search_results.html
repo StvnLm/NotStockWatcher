@@ -1,7 +1,20 @@
 {% extends "stockwatcher/base.html" %}
 {% block content %}
 
+
+
 <div class="container">
+
+  <form method="get">
+    {{ stock.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+  {% for stock in stock.qs %}
+    <li>{{ stock.senator }}</li>
+  {% endfor %}
+  </ul>
+<!-- 
     <div class="row">
     {% for stock in stocks %}
     <div class="col-4">
@@ -13,7 +26,7 @@
         </div>
       </div>
     </div>
-    {% endfor %}
+    {% endfor %} -->
 </div>
 
 {% if is_paginated %}
