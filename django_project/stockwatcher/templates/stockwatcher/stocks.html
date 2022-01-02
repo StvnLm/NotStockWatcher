@@ -3,8 +3,26 @@
 {% load widget_tweaks %}
 
 <div class="container">
-    <div class="row">
-    {% for stock in stocks %}
+  <div class="row" style="padding: 50px;">
+    <!--    ticker = models.TextField(blank=True, null=True)-->
+    <!--    asset_description = models.TextField(blank=True, null=True)-->
+    <!--    asset_type = models.TextField(blank=True, null=True)-->
+    <!--    amount = models.TextField(blank=True, null=True)-->
+    <!--    type = models.TextField(blank=True, null=True)-->
+    <!--    transaction_date = models.DateField(blank=True, null=True)-->
+    <!--    senator = models.TextField(blank=True, null=True)-->
+    <form method="post" action="{% url 'stockwatcher-stocks-search' %}">
+      <!-- avoid CSRF verification failed error. -->
+      {% csrf_token %}
+      <div class="form-group">
+        <input name="ticker" type="text" placeholder="ticker" class="form-control" value="{{ ticker }}">
+      </div>
+      <button type="submit" class="btn btn-success">Search</button>
+    </form>
+  </div>
+  <div class="row">
+
+  {% for stock in stock_list %}
     <div class="col-4">
       <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
         <div class="card-header">{{stock.transaction_date}}</div>
@@ -14,19 +32,24 @@
         </div>
       </div>
     </div>
-    {% endfor %}
+  {% endfor %}
+
+  <span class="step-links">
+    {% if stock_list.has_previous %}
+      <a href="{{ base_url }}&page={{ stock_list.previous_page_number }}">
+        Previous
+      </a>
+    {% else %}
+        Previous
+    {% endif %}
+
+    {% if stock_list.has_next %}
+      <a href="{{ base_url }}&page={{ stock_list.next_page_number }}">
+        Next
+      </a>
+    {% endif %}
+  </span>
+
 </div>
-
-{% if is_paginated %}
-  {% if page_obj.has_previous %}
-    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-  {% endif %}
-
-  {% if page_obj.has_next %}
-    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-  {% endif %}
-{% endif %}
 
 {% endblock content %}
