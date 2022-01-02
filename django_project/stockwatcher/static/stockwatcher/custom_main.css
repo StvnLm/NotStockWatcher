@@ -1,0 +1,43 @@
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+ul {
+  margin: 0;
+}
+#home-title {
+  font-size: 4em;
+  margin-top: 15%;
+  position: absolute;
+  left: 20%;
+  z-index: 1;
+  background-color: white;
+  padding: 0.1em;
+}
+
+#home-subtext {
+  font-size: 2em;
+  margin-top: 20%;
+  position: absolute;
+  left: 20%;
+  z-index: 1;
+  background-color: white;
+  color:black;
+  padding: 0.1em;
+}
+
+#home-splash {
+  max-width: 50%;
+  opacity: 100%;
+  position: absolute;
+  left: 20%;
+  z-index: 0;
+}
+
+#about-text {
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
